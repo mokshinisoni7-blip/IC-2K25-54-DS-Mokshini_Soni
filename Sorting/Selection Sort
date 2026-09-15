@@ -1,0 +1,29 @@
+#include<iostream>
+using namespace std;
+#define max 6
+int main(){
+    int a[max],e,i,j;
+
+    for(i=0;i<max;i++){
+        cout<<"Enter your "<<i<<" element:";
+        cin>>e;
+        a[i]=e;
+    }
+
+    for(i=0;i<max-1;i++){
+        for(j=i+1;j<max-i-1;j++){
+            if(a[i]>a[j+1]){
+                e=a[i];
+                a[i]=a[j+1];
+                a[j+1]=e;
+            }
+        }
+    }
+   
+    cout<<"Your sorted list is ";
+        for(i=0;i<max;i++){
+            cout<<a[i]<<",";
+            
+        }
+    return 0;
+}
