@@ -1,0 +1,73 @@
+#include<iostream>
+using namespace std;
+#define max 5
+
+class s_stack{
+    int arr[max],top,x;
+    public:
+    void push();
+    void pop();
+    void display();
+    s_stack(){
+        top=-1;
+        for(int i=0;i<max;i++){
+            arr[i]=0;
+        }
+    }
+};
+
+void s_stack::push(){
+    if(top==max-1){
+        cout<<"Stack Overflow";
+    }
+    else{
+        top++;
+        cout<<"Enter your element:";
+        cin>>x;
+        arr[top]=x;
+        cout<<"Element pushed..."<<endl;
+    }
+}
+
+void s_stack::pop(){
+    if(top==-1){
+        cout<<"Stack Underflow";
+    }
+    else{
+        x=arr[top];
+        top--;
+        cout<<x<<" is removed";
+    }
+}
+
+void s_stack::display(){
+    if(top==-1){
+        cout<<"Empty stack";
+    }
+    else{
+        for(int i=0;i<=top;i++){
+            cout<<arr[i]<<",";
+        }
+    }
+}
+
+int main(){
+    s_stack ss;
+    int t;
+    char ch;
+    do{
+        cout<<"Press 1 for Push, 2 for POP ,3 for Display";
+        cin>>t;
+        switch(t){
+            case 1:ss.push();
+            break;
+            case 2:ss.pop();
+            break;
+            case 3:ss.display();
+            break;
+        }
+        cout<<"Press y or Y to continue:";
+        cin>>ch;
+        
+    }while(ch=='y' || ch=='Y');
+}
