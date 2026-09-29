@@ -1,0 +1,102 @@
+#include<iostream>
+#define max 5
+using namespace std;
+
+class cir_queue{
+    int arr[max],f,r,x;
+    public:
+    void insert();
+    void delete_e();
+    void display();
+    s_queue(){
+        f=r=-1;
+        for(int i=0;i<max;i++){
+            arr[i]=0;
+        }
+    }
+};
+
+void cir_queue::insert(){
+    if (f==(r+1)%max){
+        cout<<"Queue is fulled\n";
+    }
+    else{
+        cout<<"Enter your element:";
+        cin>>x;
+        if(f==-1){
+            f=r=0;
+            arr[f]=x;
+            cout<<"Element inserted......\n";
+        }
+        else{
+            r=(r+1)%max;
+            arr[r]=x;
+            cout<<"Element inserted......\n";
+        }
+    }
+}
+
+void cir_queue::delete_e(){
+    if(f==-1){
+        cout<<"Empty queue\n";
+    }
+    else{
+        if(f==r){
+            x=arr[f];
+            arr[f]=0;
+            cout<<x<<"is deleted....\n";
+            f=r=-1;
+        }
+        else{
+            x=arr[f];
+            arr[f]=0;
+            f=(f+1)%max;
+            cout<<x<<"is deleted.....\n";
+        }
+    }
+}
+
+void cir_queue::display(){
+    if(f==-1){
+        cout<<"Empty Queue\n";
+    }
+    else{
+        if(f>r){
+            for(int i=f;i<max;i++){
+                cout<<arr[i]<<",";
+            }
+            for(int i=0;i<=r;i++){
+                cout<<arr[i]<<",";
+            }
+        }
+        else{
+            for(int i=f;i<=r;i++){
+                cout<<arr[i]<<",";
+            }
+        } 
+    }
+    cout<<endl;
+}
+
+int main(){
+    cir_queue cq;
+    int t;
+    char ch;
+    do{
+        cout<<"Press 1 for Insertion, 2 for Deletion ,3 for Display";
+        cin>>t;
+        switch(t){
+            case 1:cq.insert();
+            break;
+            case 2:cq.delete_e();
+            break;
+            case 3:cq.display();
+            break;
+        }
+        cout<<"Press y or Y to continue:";
+        cin>>ch;
+        
+    }while(ch=='y' || ch=='Y');
+
+    cout<<"Code Ended Here........"
+}
