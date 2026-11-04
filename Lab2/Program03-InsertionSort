@@ -1,0 +1,52 @@
+//insertion sorting
+#include<iostream>
+using namespace std;
+
+int main(){
+    int arr[10],a,temp;
+    for(int i=0;i<10;i++){
+        cout<<"Enter "<<i+1<<" element: ";
+        cin>>a;
+        arr[i]=a;
+    }
+    cout<<"Your array:\n[";
+    for(int i=0;i<10;i++){
+        cout<<arr[i]<<",";
+    }
+    cout<<"]\n";
+    
+    for(int i=1;i<10;i++){
+        for(int j=i;j>0;j--){
+            if(arr[j-1]>arr[j]){
+                temp=arr[j-1];
+                arr[j-1]=arr[j];
+                arr[j]=temp;
+            }   
+        }
+    }
+    cout<<"Sorted array:\n[";
+    for(int i=0;i<10;i++){
+        cout<<arr[i]<<",";
+    }
+    cout<<"]\n";
+}
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+OUTPUT
+
+Enter 1 element: 54
+Enter 2 element: 22
+Enter 3 element: 96
+Enter 4 element: 69
+Enter 5 element: 22
+Enter 6 element: 91
+Enter 7 element: 87
+Enter 8 element: 67
+Enter 9 element: 10
+Enter 10 element: 65
+Your array:
+[54,22,96,69,22,91,87,67,10,65,]
+Sorted array:
+[10,22,22,54,65,67,69,87,91,96,]
