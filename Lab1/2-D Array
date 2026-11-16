@@ -1,0 +1,95 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+    int a[10][10], r, c, i, j;
+    int choice, row, col, value;
+    cout << "Enter rows and columns: ";
+    cin >> r >> c;
+    cout << "Enter array elements:\n";
+    for(i = 0; i < r; i++){
+        for(j = 0; j < c; j++){
+            cin >> a[i][j];
+        }
+    }
+    do{
+        cout << "\n\n1. Insertion";
+        cout << "\n2. Deletion";
+        cout << "\n3. Searching";
+        cout << "\n4. Rotation (90 degree clockwise)";
+        cout << "\n5. Display";
+        cout << "\n6. Exit";
+        cout << "\nEnter choice: ";
+        cin >> choice;
+        switch(choice)
+        {
+            case 1:
+                cout << "Enter row, column and value: ";
+                cin >> row >> col >> value;
+                if(row < 1 || row > r || col < 1 || col > c){
+                    cout << "Invalid position!";
+                    break;
+                }
+                a[row-1][col-1] = value;
+                cout << "Element inserted!";
+                break;
+            case 2:  // Deletion
+                cout << "Enter row and column: ";
+                cin >> row >> col;
+                if(row < 1 || row > r || col < 1 || col > c){
+                    cout << "Invalid position!";
+                    break;
+                }
+                a[row-1][col-1] = 0;
+                cout << "Element deleted!";
+                break;
+            case 3:  // Searching
+                cout << "Enter value to search: ";
+                cin >> value;
+                for(i = 0; i < r; i++){
+                    for(j = 0; j < c; j++){
+                        if(a[i][j] == value){
+                            cout << "Found at row "<< i+1 << " column " << j+1;
+                            break;
+                        }
+                    }
+                    if(j < c)
+                        break;
+                }
+                if(i == r)
+                    cout << "Element not found!";
+                break;
+            case 4:  // Rotation
+                if(r != c){
+                    cout << "Rotation requires a square matrix!";
+                    break;
+                }
+                for(i = 0; i < r/2; i++){
+                    for(j = i; j < c-i-1; j++){
+                        int temp = a[i][j];
+                        a[i][j] = a[r-1-j][i];
+                        a[r-1-j][i] = a[r-1-i][c-1-j];
+                        a[r-1-i][c-1-j] = a[j][c-1-i];
+                        a[j][c-1-i] = temp;
+                    }
+                }
+                cout << "Matrix rotated!";
+                break;
+            case 5:  // Display
+                cout << "Matrix:\n";
+                for(i = 0; i < r; i++){
+                    for(j = 0; j < c; j++){
+                        cout << a[i][j] << " ";
+                    }
+                    cout << endl;
+                }
+                break;
+            case 6:
+                cout << "Exiting...";
+                break;
+            default:
+                cout << "Invalid choice!";
+        }
+    } while(choice != 6);
+    return 0;
+}
