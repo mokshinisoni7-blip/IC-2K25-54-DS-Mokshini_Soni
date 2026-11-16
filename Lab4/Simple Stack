@@ -1,0 +1,73 @@
+#include<iostream>
+using namespace std;
+#define max 5
+
+class stack{
+    int a[max],top;
+    public:stack(){
+        for(int i=0;i<max;i++){
+            a[i]=0;
+        }
+        top=-1;
+    }
+    void push();
+    void pop();
+    void display();
+};
+
+void stack::push(){
+    int n;
+    cout<<"Enter the element to push";
+    cin>>n;
+    if(top==max-1){
+        cout<<"Stack Overflow";
+    }
+    else{
+        top++;
+        a[top=n];
+    }
+}
+
+void stack::pop(){
+    int d;
+    if(top==-1){
+        cout<<"Stack Underflow";
+    }
+    else{
+        d=a[top];
+        top--;
+        cout<<"Poped element ="<<d;
+    }
+}
+
+void stack::display(){
+    if(top==-1){
+        cout<<"Stack has no element";
+    }
+    else{
+        for(int i=top;i>=0;i--){
+            cout<<a[i];
+        }
+    }
+}
+
+int main(){
+    stack s;
+    int ch;
+    char c;
+    do{
+        cout<<"\n1.Push\n2.Pop\n3.Display\nEnter number to continue:";
+        cin>>ch;
+        switch(ch){
+            case 1:s.push();
+            break;
+            case 2:s.pop();
+            break;
+            case 3:s.display();
+            break;
+        }
+        cout<<"\nenter y for continue:";
+        cin>>c;
+    }while(c=='y');
+    return 0;
+}
