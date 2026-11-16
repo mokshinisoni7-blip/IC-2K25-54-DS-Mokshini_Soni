@@ -1,0 +1,91 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+    int a[100], n, i, pos, value, choice;
+    cout << "Enter size of array: ";
+    cin >> n;
+    cout << "Enter array elements: ";
+    for(i = 0; i < n; i++){
+        cin >> a[i];
+    }
+    do{
+        cout << "\n1. Insertion";
+        cout << "\n2. Deletion";
+        cout << "\n3. Searching";
+        cout << "\n4. Rotation";
+        cout << "\n5. Display";
+        cout << "\n6. Exit";
+        cout << "\nEnter your choice: ";
+        cin >> choice;
+        switch(choice){
+            case 1:  // Insertion
+                cout << "Enter position and value: ";
+                cin >> pos >> value;
+                if(pos < 1 || pos > n + 1 || n >= 100){
+                    cout << "Invalid position!";
+                    break;
+                }
+                for(i = n; i >= pos; i--){
+                    a[i] = a[i-1];
+                }
+                a[pos-1] = value;
+                n++;
+                cout << "Element inserted!";
+                break;
+            case 2:  // Deletion
+                cout << "Enter position to delete: ";
+                cin >> pos;
+                if(pos < 1 || pos > n){
+                    cout << "Invalid position!";
+                    break;
+                }
+                for(i = pos-1; i < n-1; i++)
+                {
+                    a[i] = a[i+1];
+                }
+                n--;
+                cout << "Element deleted!";
+                break;
+            case 3:  // Searching
+                cout << "Enter value to search: ";
+                cin >> value;
+                for(i = 0; i < n; i++){
+                    if(a[i] == value){
+                        break;
+                    }
+                }
+                if(i < n)
+                    cout << "Element found at position " << i+1;
+                else
+                    cout << "Element not found!";
+                break;
+            case 4: 
+                if(n == 0){
+                    cout << "Array is empty!";
+                    break;
+                }
+                value = a[0];
+                for(i = 0; i < n-1; i++){
+                    a[i] = a[i+1];
+                }
+                a[n-1] = value;
+                cout << "Array rotated left!";
+                break;
+            case 5:  // Display
+                cout << "Array elements: ";
+                for(i = 0; i < n; i++){
+                    cout << a[i] << " ";
+                }
+                break;
+            case 6:
+                cout << "Exiting...";
+                break;
+            default:
+                cout << "Invalid choice!";
+        }
+
+    } while(choice != 6);
+
+    return 0;
+}
