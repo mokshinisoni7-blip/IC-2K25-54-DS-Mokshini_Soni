@@ -1,0 +1,118 @@
+#include<iostream>
+using namespace std;
+#define max 5
+
+class mstack{
+    int a[max],top1,top2,x;
+    public:mstack(){
+        for(int i=0;i<max;i++){
+            a[i]=0;
+        }
+        top1=-1;
+        top2=max;
+    }
+    void push1();
+    void push2();
+    void pop1();
+    void pop2();
+    void display1();
+    void display2();
+};
+
+void mstack::push1(){
+    int n;
+    if(top1+1==top2){
+        cout<<"Stack Overflow";
+    }
+    else{
+        cout<<"Enter the element to push";
+        cin>>n;
+        top1++;
+        a[top1]=n;
+    }
+}
+
+void mstack::push2(){
+    int n;
+    if(top2==top1+1){
+        cout<<"Stack Overflow";
+    }
+    else{
+        cout<<"Enter the element to push";
+        cin>>n;
+        top2--;
+        a[top2]=n;
+    }
+}
+
+void mstack::pop1(){
+    int d;
+    if(top1==-1){
+        cout<<"Stack Underflow";
+    }
+    else{
+        d=a[top1];
+        top1--;
+        cout<<"Poped element ="<<d;
+    }
+}
+
+void mstack::pop2(){
+    int d;
+    if(top2==max){
+        cout<<"Stack Underflow";
+    }
+    else{
+        d=a[top2];
+        top2++;
+        cout<<"Poped element ="<<d;
+    }
+}
+
+void mstack::display1(){
+    if(top1==-1){
+        cout<<"Stack has no element";
+    }
+    else{
+        for(int i=top1;i>=0;i--){
+            cout<<a[i]<<",";
+        }
+    }
+}
+
+void mstack::display2(){
+    if(top2==max){
+        cout<<"Stack has no element";
+    }
+    else{
+        for(int i=top2;i<max;i++){
+            cout<<a[i];
+        }
+    }
+}
+int main(){
+    mstack s;
+    int ch;
+    char c;
+    do{
+        cout<<"\n1.Push1\n2.push2\n3.Pop1\n4.Pop2\n5.Display1\n6.Display2\nEnter number to continue:";
+        cin>>ch;
+        switch(ch){
+            case 1:s.push1();
+            break;
+            case 2:s.push2();
+            break;
+            case 3:s.pop1();
+            break;
+            case 4:s.pop2();
+            break;
+            case 5:s.display1();
+            break;
+            case 6:s.display2();
+            break;
+        }
+        cout<<"\nenter y for continue:";
+        cin>>c;
+    }while(c=='y');
+    return 0;
+}
